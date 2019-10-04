@@ -27,6 +27,7 @@ class file_management:
     #matching the corresponding data types
     def folder_shift(self, extensions, folder):
         self.pics=[y for x in extensions for y in self.all_files if x in y]
+        #A small problem in this is that spaces do not work
         [os.system('mv ../{} ../{}/'.format(x, folder)) for x in self.pics]
     
     def categorise(self):
@@ -42,12 +43,11 @@ class file_management:
         for x in os.listdir('..'):
             #This line moves all other files to the other directory
             if os.path.isfile(x):
-                os.system('mv ../' + x + ' Others/')
+                os.system('mv ../{} ../Others'.format(x))
             else:
                 #This line moves all directories other than our default ones to Others
                 if x not in list(self.check_list) + ['user_data']:
-                    os.system('mv ../' + x + ' Others/')
-        
+                    os.system('mv ../{} ../Others'.format(x))
 
 a = file_management()
 

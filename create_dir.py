@@ -21,7 +21,7 @@ if __name__ == "__main__":
         def check_dir(self):
             #This check whether all elements in check_list are in the previous folder
             if not self.check_list.issubset(set(os.listdir('..'))):
-                [os.makedirs('../'+x) for x in self.check_list]
+                [os.makedirs('../'+x, exist_ok=True) for x in self.check_list]
 
         #This function will move the files to the corresponding position
         #matching the corresponding data types

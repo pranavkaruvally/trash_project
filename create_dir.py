@@ -23,14 +23,14 @@ class File_management:
     def check_dir(self):
         #This check whether all elements in check_list are in the previous folder
         if not self.check_list.issubset(set(os.listdir('..'))):
-            [os.makedirs('../'+x, exist_ok=True) for x in self.check_list]
+            for x in self.check_list: os.makedirs('../'+x, exist_ok=True)
 
     #This function will move the files to the corresponding position
     #matching the corresponding data types
     def folder_shift(self, extensions, folder):
         self.pics=[y for x in extensions for y in self.all_files if x in y]
         #The additional double quotes would read the entire file as a single string and the spaces would no longer be a problem
-        [os.system('mv ../"{}" ../{}/'.format(x, folder)) for x in self.pics]
+        for x in self.pics: os.system('mv ../"{}" ../{}/'.format(x, folder))
         
     def categorise(self):
         self.all_files = set(os.listdir('..')) - self.check_list
